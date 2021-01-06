@@ -6,6 +6,14 @@ import ListAppointments from './ListAppointments';
 import SearchAppointments from './SearchAppointments';
 
 class App extends Component {
+  
+  constructor() {
+    super();
+    this.state = {
+      myName: 'Chi'
+    };
+  }
+
   render() {
     return (
       <main className="page bg-white" id="petratings">
@@ -13,6 +21,7 @@ class App extends Component {
           <div className="row">
             <div className="col-md-12 bg-white">
               <div className="container">
+                {this.state.myName}
                 <AddAppointments />
                 <SearchAppointments />
                 <ListAppointments />
