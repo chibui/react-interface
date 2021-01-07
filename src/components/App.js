@@ -29,12 +29,20 @@ class App extends Component {
   }
 
   render() {
+    const listItems = this.state.myAppointments.map(item => (
+      <div>
+        <div>{item.petName}</div>
+        <div>{item.petOwner}</div>
+      </div>
+    ));
+
     return (
       <main className="page bg-white" id="petratings">
         <div className="container">
           <div className="row">
             <div className="col-md-12 bg-white">
               <div className="container">
+                {listItems}
                 <AddAppointments />
                 <SearchAppointments />
                 <ListAppointments />
