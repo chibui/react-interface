@@ -5,15 +5,35 @@ import { FaPlus } from 'react-icons/fa';
 class AddAppointments extends Component {
     constructor() {
         super();
-        this.state = {
+        this.state = this.initState();
+        this.handleAdd = this.handleAdd.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    initState() {
+        return {
             aptDate: '',
             aptNotes: '',
             aptTime: '',
             ownerName: '',
             petName: ''
+        };
+    }
+
+    handleAdd(e) {
+        e.preventDefault();
+        let tempApt = {
+            aptDate: `${this.state.aptDate} ${this.state.aptTime}`,
+            aptNotes: this.state.aptNotes,
+            ownerName: this.state.ownerName,
+            petName: this.state.petName
         }
 
-        this.handleChange = this.handleChange.bind(this);
+        this.props.addAppointment(tempApt);
+
+        this.setState(this.initState());
+       
+        this.props.toggleForm();
     }
 
     handleChange(e) {
@@ -36,7 +56,11 @@ class AddAppointments extends Component {
                 </div>
   
                 <div className="card-body">
-                    <form id="aptForm" noValidate>
+                    <form 
+                        id="aptForm" 
+                        onSubmit={this.handleAdd}
+                        noValidate
+                    >
                         <div className="form-group form-row">
                             <label
                                 className="col-md-2 col-form-label text-md-right"
@@ -72,7 +96,7 @@ class AddAppointments extends Component {
                                     className="form-control"
                                     name="ownerName"
                                     placeholder="Owner's Name"
-                                    value={this.state.petOwner}
+                                    value={this.state.ownerName}
                                     onChange={this.handleChange}
                                 />
                             </div>
