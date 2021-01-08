@@ -1,4 +1,3 @@
-import { fromPairs } from 'lodash';
 import React, { Component } from 'react';
 import '../css/App.css';
 
@@ -12,8 +11,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      formDisplay: false,
       myAppointments: [],
-      lastIndex: 0
+      lastIndex: 0,
     };
 
     this.deleteAppointment = this.deleteAppointment.bind(this);
@@ -51,7 +51,7 @@ class App extends Component {
           <div className="row">
             <div className="col-md-12 bg-white">
               <div className="container">
-                <AddAppointments />
+                <AddAppointments formDisplay={this.state.formDisplay} />
                 <SearchAppointments />
                 <ListAppointments 
                   appointments={this.state.myAppointments}
